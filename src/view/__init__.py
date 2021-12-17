@@ -1,5 +1,4 @@
-class System:
-
+class View:
     @staticmethod
     def print_list(a_list: list):
         for item in a_list:

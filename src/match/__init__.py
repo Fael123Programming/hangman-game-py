@@ -59,7 +59,7 @@ class Match:
             return "caractere encontrado" if hit else "caractere nao encontrado"
 
     def play(self):
-        from src.system import System
+        from src.view import System
         from time import sleep
         System.msg("Hangman Game", 50)
         print("Secret word: ", end="")
