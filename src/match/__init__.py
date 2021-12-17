@@ -59,29 +59,29 @@ class Match:
             return "caractere encontrado" if hit else "caractere nao encontrado"
 
     def play(self):
-        from src.view import System
+        from src.view import View
         from time import sleep
-        System.msg("Hangman Game", 50)
+        View.msg("Hangman Game", 50)
         print("Secret word: ", end="")
-        System.print_list(self._symbols)
+        View.print_list(self._symbols)
         print("\nErrors:", self._errors)
         print("Hint:", self._word.hint)
-        System.draw_gallows(self._errors)
+        View.draw_gallows(self._errors)
         won = lose = False
         while True:
             letter = input("Letter of your choice: ").lower()
-            System.clean_prompt()
+            View.clean_prompt()
             res = self._analyse_char(letter)
             won, lose = res == Status.won_msg(), res == Status.lose_msg()
-            System.msg(res.capitalize(), 50)
+            View.msg(res.capitalize(), 50)
             sleep(2)
-            System.clean_prompt()
-            System.msg("Hangman Game", 50)
+            View.clean_prompt()
+            View.msg("Hangman Game", 50)
             print("Secret word: ", end="")
-            System.print_list(self._symbols)
+            View.print_list(self._symbols)
             print("\nErrors:", self._errors)
             print("Hint:", self._word.hint)
-            System.draw_gallows(self._errors)
+            View.draw_gallows(self._errors)
             if won or lose:
                 return self
 
