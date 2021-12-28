@@ -1,4 +1,3 @@
-from match import Match, Status
 from challenge import Challenge
 
 
@@ -47,69 +46,84 @@ class Player:
         return self._nickname == other.nickname
 
     def __str__(self):
-        return f"{{nickname={self.nickname}, challenges_won={self.performance.challenges_won}, " \
-               f"matches_won={self.performance.matches_won}, challenges_played={self.performance.challenges_played}, " \
-               f"matches_played={self.performance.matches_played}, yield_coe={self.performance.yield_coefficient}}}"
+        return f"{{nickname={self.nickname}, challenge_victories={self.performance.challenge_victories}, " \
+               f"challenges_played={self.performance.challenges_played}, " \
+               f"challenges_made={self.performance.challenges_made}, " \
+               f"match_victories={self.performance.match_victories}, " \
+               f"matches_played={self.performance.matches_played}, " \
+               f"yield_coe={self.performance.yield_coefficient}}}"
 
 
 class Performance:
-    __slots__ = ["_challenges_played", "_matches_played", "_challenges_won", "_matches_won", "_lost_challenges",
-                 "_lost_matches", "_yield_coefficient"]
-    # yield = (challenges_won + matches_won) / (challenges_played + matches_played).
+    __slots__ = ["_challenges_played", "_challenge_victories", "_challenge_defeats", "_challenges_made",
+                 "_matches_played", "_match_victories", "_match_defeats", "_yield_coefficient"]
+    # yield = (challenges_won + matches_won) / (challenges_played + matches_played + challenges_made).
 
     def __init__(self):
         # A performance of a novice is empty.
-        self._challenges_played = self._matches_played = self._challenges_won = self._matches_won = 0
-        self._lost_challenges = self._lost_matches = self._yield_coefficient = 0
+        self._challenges_played = self._matches_played = self._challenge_victories = self._match_victories = 0
+        self._challenge_defeats = self._match_defeats = self._yield_coefficient = self._challenges_made = 0
 
     @property
     def challenges_played(self):
         return self._challenges_played
 
     @property
+    def challenge_victories(self):
+        return self._challenge_victories
+
+    @property
+    def challenge_defeats(self):
+        return self._challenge_defeats
+
+    @property
+    def challenges_made(self):
+        return self._challenges_made
+
+    @property
     def matches_played(self):
         return self._matches_played
 
     @property
-    def challenges_won(self):
-        return self._challenges_won
+    def match_victories(self):
+        return self._match_victories
 
     @property
-    def matches_won(self):
-        return self._matches_won
-
-    @property
-    def lost_challenges(self):
-        return self._lost_challenges
-
-    @property
-    def lost_matches(self):
-        return self._lost_matches
+    def match_defeats(self):
+        return self._match_defeats
 
     @property
     def yield_coefficient(self):
         return self._yield_coefficient
 
-    def update(self, match: Match):
-        if match.__class__ == Match.__class__:  # Common match.
-            self._matches_played += 1
-            if match.status.status == Status.won_msg():  # Player won the match.
-                self._matches_won += 1
-            else:
-                self._lost_matches += 1
-        else:  # match is a challenge.
-            self._challenges_played += 1
-            if match.status.status == Status.won_msg():  # Player won the challenge.
-                self._challenges_won += 1
-            else:
-                self._lost_challenges += 1
-        self._calculate_new_yield_coe()
+    @challenges_played.setter
+    def challenges_played(self, challenges_played):
+        self._challenges_played = challenges_played
+
+    @challenge_victories.setter
+    def challenge_victories(self, challenge_victories):
+        self._challenge_victories = challenge_victories
+
+    @challenge_defeats.setter
+    def challenge_defeats(self, challenge_defeats):
+        self._challenge_defeats = challenge_defeats
+
+    @challenges_made.setter
+    def challenges_made(self, challenges_made):
+        self._challenges_made = challenges_made
+
+    @matches_played.setter
+    def matches_played(self, matches_played):
+        self._matches_played = matches_played
+
+    @match_victories.setter
+    def match_victories(self, match_victories):
+        self._match_victories = match_victories
+
+    @match_defeats.setter
+    def match_defeats(self, match_defeats):
+        self._match_defeats = match_defeats
 
     def _calculate_new_yield_coe(self):
-        self._yield_coefficient = (self._matches_won + self._challenges_won) / (self._matches_played +
-                                                                                self._challenges_played)
-
-
-if __name__ == "__main__":
-    p1 = Player("rafael_king", "12345")
-    print(p1)
+        self._yield_coefficient = (self._match_victories + self._challenge_victories) / \
+                                  (self._matches_played + self._challenges_played + self._challenges_made)

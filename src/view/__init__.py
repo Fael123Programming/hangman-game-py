@@ -1,4 +1,8 @@
-class View:
+from singleton_meta import SingletonMeta
+
+
+class View(metaclass=SingletonMeta):
+
     @staticmethod
     def print_list(a_list: list):
         for item in a_list:
