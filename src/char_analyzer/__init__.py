@@ -1,7 +1,4 @@
-from singleton_meta import SingletonMeta
-
-
-class CharAnalyzer(metaclass=SingletonMeta):
+class CharAnalyzer:
 
     @staticmethod
     def analyse_char(match, char: str) -> str:

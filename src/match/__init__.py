@@ -45,48 +45,45 @@ class Match:
     def play(self):
         from src.view import View
         from time import sleep
-        self._status.status = Status.IN_PROGRESS()
-        view = View()  # Singleton object!
-        analyzer = CharAnalyzer()
-        view.msg("Hangman Game", 50)
+        self._status.status = Status.in_progress()
+        View.msg("Hangman Game", 50)
         print("Secret word: ", end="")
-        view.print_list(self._symbols)
+        View.print_list(self._symbols)
         print("\nErrors:", self._errors)
         print("Hint:", self._word.hint)
-        view.draw_gallows(self._errors)
-        while self._status.status == Status.IN_PROGRESS():
+        View.draw_gallows(self._errors)
+        while self._status.status == Status.in_progress():
             letter = input("Letter of your choice: ").lower()
-            view.clean_prompt()
-            analysis_result = analyzer.analyse_char(self, letter)
-            view.msg(analysis_result.capitalize(), 50)
+            View.clean_prompt()
+            analysis_result = CharAnalyzer.analyse_char(self, letter)
+            View.msg(analysis_result.capitalize(), 50)
             sleep(2)
-            view.clean_prompt()
-            view.msg("Hangman Game", 50)
+            View.clean_prompt()
+            View.msg("Hangman Game", 50)
             print("Secret word: ", end="")
-            view.print_list(self._symbols)
+            View.print_list(self._symbols)
             print("\nErrors:", self._errors)
             print("Hint:", self._word.hint)
-            view.draw_gallows(self._errors)
-            if self._status.status == Status.VICTORY():
-                view.msg("Congratulations... You won!", 50)
-            elif self._status.status == Status.DEFEAT():
-                view.msg("Oh bad... Unfortunately, you did not reach that!", 50)
-        self._hand_results()
+            View.draw_gallows(self._errors)
+            if self._status.status == Status.victory():
+                View.msg("Congratulations... You won!", 50)
+            elif self._status.status == Status.defeat():
+                View.msg("Oh bad... Unfortunately, you did not reach that!", 50)
 
     def update_status(self):
         if self._errors == self._chances:
-            self._status.status = Status.DEFEAT()
+            self._status.status = Status.defeat()
         elif self._hits == len(self._word.word):
-            self._status.status = Status.VICTORY()
+            self._status.status = Status.victory()
         else:
-            self._status.status = Status.IN_PROGRESS()
+            self._status.status = Status.in_progress()
 
-    def _hand_results(self):
+    def hand_results(self):
         self._player.performance.matches_played += 1
-        if self._status.status == Status.VICTORY():  # Player won the match.
-            self._player.performance.matches_won += 1
+        if self._status.status == Status.victory():  # Player won the match.
+            self._player.performance.match_victories += 1
         else:
-            self._player.performance.lost_matches += 1
+            self._player.performance.match_defeats += 1
         self._player.performance.calculate_new_yield_coe()
 
 
@@ -108,16 +105,19 @@ class Status:
 
     @status.setter
     def status(self, status):
-        self._status = status
+        if status == self._DEFEAT or status == self._VICTORY or status == self._IN_PROGRESS:
+            self._status = status
+        else:
+            raise ValueError("Unknown status")
 
     @classmethod
-    def DEFEAT(cls):
+    def defeat(cls):
         return cls._DEFEAT
 
     @classmethod
-    def VICTORY(cls):
+    def victory(cls):
         return cls._VICTORY
 
     @classmethod
-    def IN_PROGRESS(cls):
+    def in_progress(cls):
         return cls._IN_PROGRESS

@@ -46,12 +46,13 @@ class Player:
         return self._nickname == other.nickname
 
     def __str__(self):
-        return f"{{nickname={self.nickname}, challenge_victories={self.performance.challenge_victories}, " \
-               f"challenges_played={self.performance.challenges_played}, " \
-               f"challenges_made={self.performance.challenges_made}, " \
-               f"match_victories={self.performance.match_victories}, " \
-               f"matches_played={self.performance.matches_played}, " \
-               f"yield_coe={self.performance.yield_coefficient}}}"
+        return f"{self.nickname:<25}{self.performance.challenges_played:<25}{self.performance.challenges_made:<25}" \
+               f"{self.performance.challenge_victories:<25}{self.performance.challenge_defeats:<25}" \
+               f"{self.performance.matches_played:<25}{self.performance.match_victories:<25}" \
+               f"{self.performance.match_defeats:<25}{self.performance.yield_coefficient}"
+
+    def __repr__(self):
+        return repr((self._nickname, self._password))
 
 
 class Performance:
