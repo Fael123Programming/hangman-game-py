@@ -91,13 +91,13 @@ class Status:
 
     __slots__ = ["_status"]
 
-    _DEFEAT = -1
-    _VICTORY = 1
-    _IN_PROGRESS = 0
-    _NOT_STARTED = None
+    _defeat = -1
+    _victory = 1
+    _in_progress = 0
+    _not_started = None
 
     def __init__(self):
-        self._status = Status._NOT_STARTED
+        self._status = Status._not_started
 
     @property
     def status(self):
@@ -105,19 +105,19 @@ class Status:
 
     @status.setter
     def status(self, status):
-        if status == self._DEFEAT or status == self._VICTORY or status == self._IN_PROGRESS:
+        if status == self._defeat or status == self._victory or status == self._in_progress:
             self._status = status
         else:
             raise ValueError("Unknown status")
 
     @classmethod
     def defeat(cls):
-        return cls._DEFEAT
+        return cls._defeat
 
     @classmethod
     def victory(cls):
-        return cls._VICTORY
+        return cls._victory
 
     @classmethod
     def in_progress(cls):
-        return cls._IN_PROGRESS
+        return cls._in_progress
