@@ -1,0 +1,11 @@
+animals
+american_states
+brazilian_states
+car_brands
+countries
+famous_cities
+famous_games
+famous_exponents
+languages
+professions
+religions
