@@ -1,5 +1,5 @@
 from extra.challenge.challenge import Challenge
-from performance import Performance
+from extra.player.performance import Performance
 
 
 class Player:
@@ -41,16 +41,40 @@ class Player:
     def password(self, password: str):
         self._password = password
 
+    def tuple(self):
+        data = (
+            self._nickname,
+            self._password,
+            self.performance.matches_played,
+            self.performance.match_victories,
+            self.performance.match_defeats,
+            self.performance.challenges_played,
+            self.performance.challenge_victories,
+            self.performance.challenge_defeats,
+            self.performance.challenges_made,
+            self.performance.yield_coefficient
+        )
+        return data
+
     def __eq__(self, other):
         if not isinstance(other, Player):
             return False
         return self._nickname == other.nickname
 
     def __str__(self):
-        return f"{self.nickname:<25}{self.performance.challenges_played:<25}{self.performance.challenges_made:<25}" \
-               f"{self.performance.challenge_victories:<25}{self.performance.challenge_defeats:<25}" \
-               f"{self.performance.matches_played:<25}{self.performance.match_victories:<25}" \
-               f"{self.performance.match_defeats:<25}{self.performance.yield_coefficient}"
+        data = (
+            self._nickname,
+            self._password,
+            self.performance.matches_played,
+            self.performance.match_victories,
+            self.performance.match_defeats,
+            self.performance.challenges_played,
+            self.performance.challenge_victories,
+            self.performance.challenge_defeats,
+            self.performance.challenges_made,
+            self.performance.yield_coefficient
+        )
+        return data.__str__()
 
     def __repr__(self):
         return repr((self._nickname, self._password))

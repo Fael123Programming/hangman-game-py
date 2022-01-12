@@ -5,7 +5,8 @@ from extra.match.status import Status
 class Challenge(Match):
     __slots__ = ["_sender"]
 
-    def __init__(self, word, chances, receiver, sender):
+    def __init__(self, word, chances: int, receiver, sender):
+        assert chances > 0, f"Chances {chances} must be >= 0"
         super().__init__(word, chances, receiver)  # receiver is the player.
         self._sender = sender
 
@@ -25,3 +26,12 @@ class Challenge(Match):
             self.player.performance.challenge_defeats += 1
         self._sender.performance.calculate_new_yield_coe()
         self.player.performance.calculate_new_yield_coe()
+
+    def __str__(self):
+        data = (
+            self._word,
+            self._chances,
+            self.player.nickname,
+            self._sender.nickname
+        )
+        return data.__str__()

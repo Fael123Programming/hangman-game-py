@@ -13,7 +13,6 @@ from database_manager import DataBaseManager
 # The code below was already run and hence should not be executed once again!
 
 # if __name__ == "__main__":
-#     db = DataBaseManager("database")
 #     player_fields = {
 #                 "nickname": "text",
 #                 "password": "text",
@@ -40,3 +39,5 @@ from database_manager import DataBaseManager
 #                 "domain": "text"
 #     }
 #     db.create_table("words", words_fields)
+
+

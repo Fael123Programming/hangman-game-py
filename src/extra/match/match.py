@@ -1,5 +1,5 @@
 from extra.char_analyzer.char_analyzer import CharAnalyzer
-from status import Status
+from extra.match.status import Status
 
 
 class Match:
