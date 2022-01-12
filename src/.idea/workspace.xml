@@ -13,7 +13,6 @@
       <change afterPath="$PROJECT_DIR$/extra/menu/menus/menu_account_creation.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/extra/menu/menus/menu_player_logged_in.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/extra/menu/menus/menu_player_logged_out.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extra/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/challenge/challenge.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/challenge/challenge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/data_persistence/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/data_persistence/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/database.db" afterDir="false" />
@@ -73,7 +72,7 @@
       <recent name="$PROJECT_DIR$/extra" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="src" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -188,11 +187,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.two" />
         <item itemvalue="Python.menu_account_creation" />
         <item itemvalue="Python.menu" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
