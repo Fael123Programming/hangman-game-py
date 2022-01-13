@@ -1,20 +1,17 @@
-from extra.challenge.challenge import Challenge
-from extra.player.performance import Performance
-
-
 class Player:
     __slots__ = ["_nickname", "_password", "_performance", "_challenges"]
 
     def __init__(self, nickname: str, password: str):
+        from extra.player.performance import Performance
         self._nickname = nickname
         self._password = password
         self._performance = Performance()
         self._challenges = list()
 
-    def add_challenge(self, challenge: Challenge):
+    def add_challenge(self, challenge):
         self._challenges.append(challenge)
 
-    def remove_challenge(self, challenge: Challenge):  # If challenge is denied.
+    def remove_challenge(self, challenge):  # If challenge is denied.
         self._challenges.remove(challenge)
 
     @property
@@ -66,6 +63,7 @@ class Player:
 
     @classmethod
     def instantiate(cls, player_data: tuple, challenges_list: list):
+        from extra.challenge.challenge import Challenge
         assert len(player_data) == 10, "Invalid player_data"
         player = Player(player_data[0], player_data[1])
         player.performance.matches_played = player_data[2]

@@ -1,5 +1,5 @@
 from extra.menu.menus.menu import Menu
-from extra.view.view import View
+from extra.view.view import view
 from extra.data_persistence.database_manager import DataBaseManager
 from extra.player.player import Player
 
@@ -11,7 +11,7 @@ class MenuAccountCreation(Menu):
 
     # Overridden
     def display(self):
-        view = View()
+        view = view()
         nickname = password = None
 
         def not_valid_credentials():
@@ -59,7 +59,7 @@ class MenuAccountCreation(Menu):
 
     @staticmethod
     def _set_nickname():
-        view = View()
+        view = view()
         view.msg("Set Nickname")
         nickname = input("Type a nickname: ")
         view.clean_prompt()
@@ -80,7 +80,7 @@ class MenuAccountCreation(Menu):
 
     @staticmethod
     def _set_password():
-        view = View()
+        view = view()
         view.msg("Set Password")
         password = input("Type a password (it would be safer \nif you choose a strong one): ")
         view.clean_prompt()
@@ -92,7 +92,7 @@ class MenuAccountCreation(Menu):
 
     @staticmethod
     def _create_account(nickname: str, password: str):
-        view = View()
+        view = view()
         view.msg(f"Nickname: {nickname}", show_upper_line=True, show_lower_line=False)
         view.msg(f"Password: {password}", show_upper_line=False, show_lower_line=False)
         view.msg(f"Are you sure [y/n]? ", show_upper_line=False, show_lower_line=True)

@@ -1,7 +1,4 @@
 from extra.menu.menus.main_menu import MainMenu
-from extra.menu.menu_factories.menu_account_creation_factory import MenuAccountCreationFactory
-from extra.view.view import View
-from extra.data_persistence.database_manager import DataBaseManager
 
 
 class MenuPlayerLoggedOut(MainMenu):
@@ -11,6 +8,9 @@ class MenuPlayerLoggedOut(MainMenu):
 
     # Overridden
     def display(self):
+        from extra.view.view import View
+        from extra.menu.menu_factories.menu_play_factory import MenuPlayFactory
+        from extra.menu.menu_factories.menu_account_creation_factory import MenuAccountCreationFactory
         view = View()
         view.msg("Main Menu", 150)
         for option in range(len(self.options)):
@@ -35,6 +35,8 @@ class MenuPlayerLoggedOut(MainMenu):
 
     @staticmethod
     def _log_in():
+        from extra.view.view import View
+        from extra.data_persistence.database_manager import DataBaseManager
         view = View()
         view.msg("Log into your account")
         nickname = input("Nickname: ")

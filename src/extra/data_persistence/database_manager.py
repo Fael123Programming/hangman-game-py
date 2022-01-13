@@ -30,13 +30,16 @@ class DataBaseManager(metaclass=SingletonMeta):
         connection.close()
 
     def insert_data(self, table_name: str, data: str):
+        # data must be a string representation of a tuple of values
+        # according to the fields of the table.
         connection = db.connect(self._database_path)
         cursor = connection.cursor()
         cursor.execute(f"INSERT INTO {table_name} VALUES {data}")
         connection.commit()
         connection.close()
 
-    def inspect_table(self, table_name: str, fields: str | list, sorting_field: str, ascending=True, rows=-1):
+    def inspect_table(self, table_name: str, fields: str | list, sorting_field: str,
+                      ascending=True, rows=-1, field_conditions=None | dict):
         assert fields == "*" or isinstance(fields, list) and len(fields) > 0, f"Fields argument {fields} is invalid!"
         connection = db.connect(self._database_path)
         cursor = connection.cursor()
@@ -50,12 +53,21 @@ class DataBaseManager(metaclass=SingletonMeta):
                     fields_str += ", "
                 counter += 1
         sorting_mode = "DESC" if not ascending else "ASC"
-        cursor.execute(f"SELECT {fields_str} FROM {table_name} ORDER BY {sorting_field} {sorting_mode}")
-        return cursor.fetchall() if rows <= 0 else cursor.fetchmany(rows)
+        if field_conditions is None:
+            cursor.execute(f"SELECT {fields_str} FROM {table_name} ORDER BY {sorting_field} {sorting_mode}")
+        else:
+            assert isinstance(field_conditions, dict), "Field conditions must be None or a dict"
+            field_conditions_str = self._stringify_logic(field_conditions)
+            cursor.execute(f"SELECT {fields_str} FROM {table_name} WHERE {field_conditions_str} ORDER BY "
+                           f"{sorting_field} {sorting_mode}")
+            connection.commit()
+        table_data = cursor.fetchall() if rows <= 0 else cursor.fetchmany(rows)
+        connection.close()
+        return table_data
 
     def update_record(self, table_name: str, field_values: dict, field_conditions: dict):
-        field_values_str = self._stringify(field_values)
-        field_conditions_str = self._stringify(field_conditions)
+        field_values_str = self._stringify_comma(field_values)
+        field_conditions_str = self._stringify_logic(field_conditions)
         connection = db.connect(self._database_path)
         cursor = connection.cursor()
         cursor.execute(f"UPDATE {table_name} SET {field_values_str} WHERE {field_conditions_str}")
@@ -63,7 +75,7 @@ class DataBaseManager(metaclass=SingletonMeta):
         connection.close()
 
     def delete_record(self, table_name: str, field_conditions: dict):
-        field_conditions_str = self._stringify(field_conditions)
+        field_conditions_str = self._stringify_logic(field_conditions)
         connection = db.connect(self._database_path)
         cursor = connection.cursor()
         cursor.execute(f"DELETE FROM {table_name} WHERE {field_conditions_str}")
@@ -84,6 +96,26 @@ class DataBaseManager(metaclass=SingletonMeta):
         challenges_list = cursor.fetchall()
         return Player.instantiate(player_data, challenges_list)
 
+    def domains(self) -> list:
+        connection = db.connect(self._database_path)
+        cursor = connection.cursor()
+        cursor.execute("SELECT domain_name FROM domains ORDER BY domain_name ASC")
+        connection.commit()
+        domains = list()
+        for domain_tuple in cursor.fetchall():
+            domains.append(domain_tuple[0])
+        return domains
+
+    def words_from_domain(self, domain: str):
+        assert domain in self.domains(), f"Domain {domain} does not exist"
+        connection = db.connect(self._database_path)
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM words WHERE domain = '{domain}' ORDER BY word")
+        connection.commit()
+        words = cursor.fetchall()
+        connection.close()
+        return words
+
     @property
     def database_name(self):
         return self._database_name
@@ -93,7 +125,7 @@ class DataBaseManager(metaclass=SingletonMeta):
         return self._database_path
 
     @staticmethod
-    def _stringify(a_dict: dict) -> str:
+    def _stringify_comma(a_dict: dict) -> str:
         result = ""
         counter = 1
         for key, value in a_dict.items():
@@ -101,8 +133,23 @@ class DataBaseManager(metaclass=SingletonMeta):
             if isinstance(value, str):
                 result += f"'{value}'"
             else:
-                result += value
+                result += str(value)
             if counter < len(a_dict):
-                result += ", "
+                result += f", "
+            counter += 1
+        return result
+
+    @staticmethod
+    def _stringify_logic(a_dict: dict) -> str:
+        result = ""
+        counter = 1
+        for key, value in a_dict.items():
+            result += key + " = "
+            if isinstance(value, str):
+                result += f"'{value}'"
+            else:
+                result += str(value)
+            if counter < len(a_dict):
+                result += f" AND "
             counter += 1
         return result

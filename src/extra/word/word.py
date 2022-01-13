@@ -6,9 +6,10 @@ class Word:
     __slots__ = ["_word", "_hint", "_domain"]
 
     def __init__(self, word: str, hint: str, domain: str):
+        from extra.data_persistence.database_manager import DataBaseManager
         assert word.isalpha(), f"Word {word} is invalid!"
         assert hint.isalpha(), f"Hint {hint} is invalid!"
-        assert domain in WordProvider().get_all_available_domains(), f"Domain {domain} does not exist"
+        assert domain in DataBaseManager("database").domains(), f"Domain {domain} does not exist"
         self._word = word
         self._hint = hint
         self._domain = domain
@@ -32,3 +33,8 @@ class Word:
             self._domain
         )
         return data.__str__()
+
+    @classmethod
+    def instantiate(cls, word_data: tuple):
+        assert len(word_data) == 3, "Word data is invalid"
+        return cls(word_data[0], word_data[1], word_data[2])

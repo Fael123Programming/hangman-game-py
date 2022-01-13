@@ -1,5 +1,5 @@
-from database_manager import DataBaseManager
-import sqlite3 as db
+import sqlite3
+
 """
     This hangman game works with only one database that affords the game
     all data it needs. This database has the following tables:
@@ -8,18 +8,16 @@ import sqlite3 as db
     challenges_made integer, yield_coefficient real);
     -> challenges: with the following fields (word text, chances integer, receiver_nickname text, sender_nickname text) 
     where receiver_nickname and sender_nickname are nicknames of real players and hence, primary keys of table players;
-    -> words: with the following fields (word text, hint text, domain text).
+    -> words: with the following fields (word text, hint text, domain text);
+    -> domains: with the following fields (domain_name text).
 """
 # The code below was already run and hence should not be executed once again!
 
-# if __name__ == "__main__":
-#     nickname = "leafar_acesnof1@"
-#     connection = db.connect("database.db")
-#     cursor = connection.cursor()
-#     cursor.execute(f"SELECT * FROM players WHERE nickname = '{nickname}'")
-#     print(cursor.fetchone())
-#     connection.commit()
-#     connection.close()
+if __name__ == "__main__":
+    from database_manager import DataBaseManager
+    from sys import path
+    db = DataBaseManager("database")
+    print(db.domains())
 #     print(db.inspect_table("players", "*", "nickname"))
 #     player_fields = {
 #                 "nickname": "text", PK
@@ -47,5 +45,3 @@ import sqlite3 as db
 #                 "domain": "text"
 #     }
 #     db.create_table("words", words_fields)
-
-
