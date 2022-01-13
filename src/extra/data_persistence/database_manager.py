@@ -1,4 +1,5 @@
 from extra.singleton_meta.singleton_meta import SingletonMeta
+from extra.player.player import Player
 import sqlite3 as db
 
 
@@ -68,6 +69,20 @@ class DataBaseManager(metaclass=SingletonMeta):
         cursor.execute(f"DELETE FROM {table_name} WHERE {field_conditions_str}")
         connection.commit()
         connection.close()
+
+    def select_player(self, nickname: str):
+        assert not nickname.isspace() and len(nickname) > 0, "Invalid nickname"
+        connection = db.connect(self._database_path)
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM players WHERE nickname = '{nickname}'")
+        connection.commit()
+        player_data = cursor.fetchone()
+        if player_data is None:  # No player found with the specified nickname at all
+            return player_data
+        cursor.execute(f"SELECT * FROM challenges WHERE receiver_nickname = '{nickname}' ORDER BY word ASC")
+        connection.commit()
+        challenges_list = cursor.fetchall()
+        return Player.instantiate(player_data, challenges_list)
 
     @property
     def database_name(self):

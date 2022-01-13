@@ -35,3 +35,7 @@ class Challenge(Match):
             self._sender.nickname
         )
         return data.__str__()
+
+    @classmethod
+    def instantiate(cls, data: tuple):
+        return cls()

@@ -10,8 +10,9 @@ class View(metaclass=SingletonMeta):
             print(item, end="")
 
     @staticmethod
-    def msg(text: str, dashes: int, show_lower_line=True):
-        View.row(dashes)
+    def msg(text: str, dashes=150, show_upper_line=True, show_lower_line=True):
+        if show_upper_line:
+            View.row(dashes)
         print(text.center(dashes))
         if show_lower_line:
             View.row(dashes)
@@ -90,11 +91,11 @@ class View(metaclass=SingletonMeta):
             print("|          /\\")
 
     @staticmethod
-    def row(dashes: int):
+    def row(dashes=150):
         assert dashes > 0, f"Dashes {dashes} must be > 0"
         print("-" * dashes)
 
     @staticmethod
-    def stop(secs: float):
+    def stop(secs=1.0):
         from time import sleep
         sleep(secs)

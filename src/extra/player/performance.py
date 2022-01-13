@@ -68,6 +68,11 @@ class Performance:
     def match_defeats(self, match_defeats):
         self._match_defeats = match_defeats
 
+    @yield_coefficient.setter
+    def yield_coefficient(self, yield_coefficient: float):
+        assert yield_coefficient >= 0, f"Yield coefficient {yield_coefficient} must be non-negative"
+        self._yield_coefficient = yield_coefficient
+
     def calculate_new_yield_coe(self):
         self._yield_coefficient = (self._match_victories + self._challenge_victories) / \
                                   (self._matches_played + self._challenges_played + self._challenges_made)

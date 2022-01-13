@@ -41,21 +41,6 @@ class Player:
     def password(self, password: str):
         self._password = password
 
-    def tuple(self):
-        data = (
-            self._nickname,
-            self._password,
-            self.performance.matches_played,
-            self.performance.match_victories,
-            self.performance.match_defeats,
-            self.performance.challenges_played,
-            self.performance.challenge_victories,
-            self.performance.challenge_defeats,
-            self.performance.challenges_made,
-            self.performance.yield_coefficient
-        )
-        return data
-
     def __eq__(self, other):
         if not isinstance(other, Player):
             return False
@@ -78,3 +63,20 @@ class Player:
 
     def __repr__(self):
         return repr((self._nickname, self._password))
+
+    @classmethod
+    def instantiate(cls, player_data: tuple, challenges_list: list):
+        assert len(player_data) == 10, "Invalid player_data"
+        player = Player(player_data[0], player_data[1])
+        player.performance.matches_played = player_data[2]
+        player.performance.match_victories = player_data[3]
+        player.performance.match_defeats = player_data[4]
+        player.performance.challenges_played = player_data[5]
+        player.performance.challenge_victories = player_data[6]
+        player.performance.challenge_defeats = player_data[7]
+        player.performance.challenges_made = player_data[8]
+        player.performance.yield_coefficient = player_data[9]
+        for challenge in challenges_list:
+            assert len(challenge) == 4, f"challenge {challenge} is an invalid object"
+            player.challenges.append(Challenge(challenge[0], challenge[1], challenge[2], challenge[3]))
+        return player

@@ -1,5 +1,5 @@
 from database_manager import DataBaseManager
-
+import sqlite3 as db
 """
     This hangman game works with only one database that affords the game
     all data it needs. This database has the following tables:
@@ -13,8 +13,16 @@ from database_manager import DataBaseManager
 # The code below was already run and hence should not be executed once again!
 
 # if __name__ == "__main__":
+#     nickname = "leafar_acesnof1@"
+#     connection = db.connect("database.db")
+#     cursor = connection.cursor()
+#     cursor.execute(f"SELECT * FROM players WHERE nickname = '{nickname}'")
+#     print(cursor.fetchone())
+#     connection.commit()
+#     connection.close()
+#     print(db.inspect_table("players", "*", "nickname"))
 #     player_fields = {
-#                 "nickname": "text",
+#                 "nickname": "text", PK
 #                 "password": "text",
 #                 "matches_played": "integer",
 #                 "match_victories": "integer",
@@ -29,12 +37,12 @@ from database_manager import DataBaseManager
 #     challenges_fields = {
 #                     "word": "text",
 #                     "chances": "integer",
-#                     "receiver_nickname": "text",
+#                     "receiver_nickname": "text", PK
 #                     "sender_nickname": "text",
 #     }
 #     db.create_table("challenges", challenges_fields)
 #     words_fields = {
-#                 "word": "text",
+#                 "word": "text", PK
 #                 "hint": "text",
 #                 "domain": "text"
 #     }

@@ -1,9 +1,10 @@
-from extra.menu.menus.menu import Menu
-from extra.menu.menus.menu_account_creation import MenuAccountCreation
+from extra.menu.menus.main_menu import MainMenu
+from extra.menu.menu_factories.menu_account_creation_factory import MenuAccountCreationFactory
 from extra.view.view import View
+from extra.data_persistence.database_manager import DataBaseManager
 
 
-class MenuPlayerLoggedOut(Menu):
+class MenuPlayerLoggedOut(MainMenu):
 
     def __init__(self):
         super().__init__("Log in", "Sign Up", "Just Play", "Exit")
@@ -14,23 +15,54 @@ class MenuPlayerLoggedOut(Menu):
         view.msg("Main Menu", 150)
         for option in range(len(self.options)):
             print(f"({option + 1}) - {self.options[option]}")
-        view.row(150)
+        view.row()
         opt = input("What do you want to do? ")
         view.clean_prompt()
         if opt not in ["1", "2", "3", "4"]:
-            view.msg("Choose a valid option", 150)
-            view.stop(1)
+            view.msg("Choose a valid option")
+            view.stop()
         elif opt == "1":
-            # If user has logged into their account properly and correctly,
-            # this piece of code must change 'player_logged_in' to the right
-            # player object and end this method execution by 'return'.
-            view.msg("Log into your account", 150)
-            view.stop(1)
+            logged_in = self._log_in()
+            if logged_in:
+                return
         elif opt == "2":
-            MenuAccountCreation().display()
+            MenuAccountCreationFactory.create_menu().display()
         elif opt == "3":
-            view.msg("Play menu", 150)
-            view.stop(1)
+            MenuPlayFactory.create_menu().display()
         elif opt == "4":
             self.get_out()
         view.clean_prompt()
+
+    @staticmethod
+    def _log_in():
+        view = View()
+        view.msg("Log into your account")
+        nickname = input("Nickname: ")
+        if nickname.isspace() or len(nickname) == 0:
+            view.clean_prompt()
+            view.msg("Invalid nickname")
+            view.stop()
+            return False
+        password = input("Password: ")
+        if password.isspace() or len(password) == 0:
+            view.clean_prompt()
+            view.msg("Invalid password")
+            view.stop()
+            return False
+        view.clean_prompt()
+        view.msg("Checking database...")
+        view.stop()
+        view.clean_prompt()
+        player = DataBaseManager("database").select_player(nickname)
+        if player is None:
+            view.msg(f"Player {nickname} does not exist")
+            view.stop()
+            return False
+        elif player.password != password:
+            view.msg("Invalid password")
+            view.stop()
+            return False
+        else:
+            from main import set_player_logged_in
+            set_player_logged_in(player.nickname)
+            return True
