@@ -1,4 +1,4 @@
-from extra.menu.menus.main_menu import MainMenu
+from extra.menu.menus.abstract.main_menu import MainMenu
 
 
 class MenuPlayerLoggedOut(MainMenu):
@@ -9,8 +9,8 @@ class MenuPlayerLoggedOut(MainMenu):
     # Overridden
     def display(self):
         from extra.view.view import View
-        from extra.menu.menu_factories.menu_play_factory import MenuPlayFactory
-        from extra.menu.menu_factories.menu_account_creation_factory import MenuAccountCreationFactory
+        from extra.menu.menu_factories.concrete.menu_play_factory import MenuPlayFactory
+        from extra.menu.menu_factories.concrete.menu_account_creation_factory import MenuAccountCreationFactory
         view = View()
         view.msg("Main Menu", 150)
         for option in range(len(self.options)):
@@ -24,7 +24,7 @@ class MenuPlayerLoggedOut(MainMenu):
         elif opt == "1":
             logged_in = self._log_in()
             if logged_in:
-                return
+                return  # We need the menu for when a player has logged in
         elif opt == "2":
             MenuAccountCreationFactory.create_menu().display()
         elif opt == "3":
@@ -36,7 +36,7 @@ class MenuPlayerLoggedOut(MainMenu):
     @staticmethod
     def _log_in():
         from extra.view.view import View
-        from extra.data_persistence.database_manager import DataBaseManager
+        from extra.data_persistence.database_manager import DatabaseManager
         view = View()
         view.msg("Log into your account")
         nickname = input("Nickname: ")
@@ -55,7 +55,7 @@ class MenuPlayerLoggedOut(MainMenu):
         view.msg("Checking database...")
         view.stop()
         view.clean_prompt()
-        player = DataBaseManager("database").select_player(nickname)
+        player = DatabaseManager().select_player(nickname)
         if player is None:
             view.msg(f"Player {nickname} does not exist")
             view.stop()

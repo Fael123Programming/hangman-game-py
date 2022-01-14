@@ -1,4 +1,4 @@
-from extra.data_persistence.database_manager import DataBaseManager
+from extra.data_persistence.database_manager import DatabaseManager
 from extra.singleton_meta.singleton_meta import SingletonMeta
 
 
@@ -6,7 +6,7 @@ class WordProvider(metaclass=SingletonMeta):
 
     __slots__ = ["_database_manager"]
 
-    def __init__(self, database_manager: DataBaseManager):
+    def __init__(self, database_manager: DatabaseManager):
         self._database_manager = database_manager
 
     @property

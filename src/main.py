@@ -1,5 +1,5 @@
-from extra.menu.menu_factories.menu_player_logged_in_factory import MenuPlayerLoggedInFactory
-from extra.menu.menu_factories.menu_player_logged_out_factory import MenuPlayerLoggedOutFactory
+from extra.menu.menu_factories.concrete.menu_player_logged_in_factory import MenuPlayerLoggedInFactory
+from extra.menu.menu_factories.concrete.menu_player_logged_out_factory import MenuPlayerLoggedOutFactory
 from sys import path
 import os
 
@@ -53,11 +53,11 @@ def del_player_logged_in_file():
 player_logged_in_file = path[1] + "/extra/data_persistence/player_logged_in.txt"
 
 if __name__ == "__main__":
+    from extra.view.view import View
     create_file_player_logged_in(player_logged_in_file)
     set_player_logged_in("None")
-    # View().load("Welcome to Hangman Game", 150)
+    View().load("Welcome to Hangman Game", 150)
     while True:
         menu = get_proper_menu()
         # If there is no user logged in or there is a user logged in, then returns a menu for either case.
         menu.display()
-

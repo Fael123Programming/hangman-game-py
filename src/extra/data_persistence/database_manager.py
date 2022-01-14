@@ -3,10 +3,10 @@ from extra.player.player import Player
 import sqlite3 as db
 
 
-class DataBaseManager(metaclass=SingletonMeta):
+class DatabaseManager(metaclass=SingletonMeta):
     __slots__ = ["_database_name", "_database_path"]  # No attributes for an instance of this class
 
-    def __init__(self, database_name: str):
+    def __init__(self, database_name="database"):
         from sys import path
         assert len(database_name) > 0 and database_name.isalpha(), f"Database name {database_name} is invalid!"
         self._database_name = database_name + ".db"

@@ -2,9 +2,10 @@ from extra.singleton_meta.singleton_meta import SingletonMeta
 
 
 class CharAnalyzer(metaclass=SingletonMeta):
+    from extra.match.match import Match
 
     @staticmethod
-    def analyse_char(match, char: str) -> str:
+    def analyse_char(match: Match, char: str) -> str:
         if len(char) > 1:
             match.errors += 1
             match.update_status()
@@ -20,8 +21,8 @@ class CharAnalyzer(metaclass=SingletonMeta):
         else:
             hit = False
             for letter in range(len(match.word.word)):
-                if match.word.word[letter] == char:
-                    match.symbols[letter] = char
+                if match.word.word[letter].lower() == char:
+                    match.symbols[letter] = match.word.word[letter]
                     match.hits += 1
                     hit = True
             if not hit:

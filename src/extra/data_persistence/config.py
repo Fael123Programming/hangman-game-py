@@ -14,10 +14,21 @@ import sqlite3
 # The code below was already run and hence should not be executed once again!
 
 if __name__ == "__main__":
-    from database_manager import DataBaseManager
-    from sys import path
-    db = DataBaseManager("database")
-    print(db.domains())
+    from database_manager import DatabaseManager
+#     from extra.word.word import Word
+#     from sys import path
+    db = DatabaseManager()
+    print(db.select_player("leafar_acesnof1@").get_formatted_info())
+    # for word in (db.inspect_table("words", "*", "word", field_conditions={"domain": "american_states"})):
+    #     print(word)
+    # with open(path[1] + "/extra/data_persistence/us_states.txt", "rt") as file1, \
+    #         open(path[1] + "/extra/data_persistence/us_states_hints.txt", "rt") as file2:
+    #     for counter in range(6):
+    #         wd = Word(file1.readline().strip(), file2.readline().strip(), "american_states")
+    #         db.insert_data("words", str(wd))
+            # db.insert_data("words", wd.__str__())
+        # for state in states:
+        #     db.insert_data("words", Word(state, "", "american_states").__str__())
 #     print(db.inspect_table("players", "*", "nickname"))
 #     player_fields = {
 #                 "nickname": "text", PK

@@ -6,10 +6,8 @@ class Word:
     __slots__ = ["_word", "_hint", "_domain"]
 
     def __init__(self, word: str, hint: str, domain: str):
-        from extra.data_persistence.database_manager import DataBaseManager
-        assert word.isalpha(), f"Word {word} is invalid!"
-        assert hint.isalpha(), f"Hint {hint} is invalid!"
-        assert domain in DataBaseManager("database").domains(), f"Domain {domain} does not exist"
+        from extra.data_persistence.database_manager import DatabaseManager
+        assert domain in DatabaseManager().domains(), f"Domain {domain} does not exist"
         self._word = word
         self._hint = hint
         self._domain = domain

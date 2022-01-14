@@ -1,7 +1,6 @@
-from extra.menu.menus.menu import Menu
-from extra.view.view import view
-from extra.data_persistence.database_manager import DataBaseManager
+from extra.menu.menus.abstract.menu import Menu
 from extra.player.player import Player
+from extra.view.view import View
 
 
 class MenuAccountCreation(Menu):
@@ -11,7 +10,7 @@ class MenuAccountCreation(Menu):
 
     # Overridden
     def display(self):
-        view = view()
+        view = View()
         nickname = password = None
 
         def not_valid_credentials():
@@ -37,18 +36,18 @@ class MenuAccountCreation(Menu):
                 if opt not in ["1", "2", "3"]:
                     view.msg("Choose a valid option")
                 elif opt == "1":
-                    nickname = self._set_nickname()
+                    nickname = self.set_nickname()
                 elif opt == "2":
-                    password = self._set_password()
+                    password = self.set_password()
                 else:
                     return
             else:
                 if opt not in ["1", "2", "3", "4"]:
                     view.msg("Choose a valid option")
                 elif opt == "1":
-                    nickname = self._set_nickname()
+                    nickname = self.set_nickname()
                 elif opt == "2":
-                    password = self._set_password()
+                    password = self.set_password()
                 elif opt == "3":
                     created = self._create_account(nickname, password)
                     if created:
@@ -58,8 +57,9 @@ class MenuAccountCreation(Menu):
             view.stop()
 
     @staticmethod
-    def _set_nickname():
-        view = view()
+    def set_nickname():
+        from extra.data_persistence.database_manager import DatabaseManager
+        view = View()
         view.msg("Set Nickname")
         nickname = input("Type a nickname: ")
         view.clean_prompt()
@@ -70,7 +70,7 @@ class MenuAccountCreation(Menu):
             view.msg("Checking if it has not already been used...")
             view.stop()
             view.clean_prompt()
-            player = DataBaseManager("database").select_player(nickname)
+            player = DatabaseManager().select_player(nickname)
             if player is not None:
                 view.msg(f"Unfortunately {nickname} is already taken")
                 return None
@@ -79,8 +79,9 @@ class MenuAccountCreation(Menu):
                 return nickname
 
     @staticmethod
-    def _set_password():
-        view = view()
+    def set_password():
+        from extra.view.view import View
+        view = View()
         view.msg("Set Password")
         password = input("Type a password (it would be safer \nif you choose a strong one): ")
         view.clean_prompt()
@@ -92,7 +93,9 @@ class MenuAccountCreation(Menu):
 
     @staticmethod
     def _create_account(nickname: str, password: str):
-        view = view()
+        from extra.view.view import View
+        from extra.data_persistence.database_manager import DatabaseManager
+        view = View()
         view.msg(f"Nickname: {nickname}", show_upper_line=True, show_lower_line=False)
         view.msg(f"Password: {password}", show_upper_line=False, show_lower_line=False)
         view.msg(f"Are you sure [y/n]? ", show_upper_line=False, show_lower_line=True)
@@ -100,7 +103,7 @@ class MenuAccountCreation(Menu):
         view.clean_prompt()
         if resp == "y":
             player = Player(nickname, password)
-            DataBaseManager("database").insert_data("players", player.__str__())
+            DatabaseManager().insert_data("players", player.__str__())
             view.msg("Account created successfully")
             view.stop()
             return True

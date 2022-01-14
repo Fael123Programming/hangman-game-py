@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from extra.menu.menus.menu import Menu
+from extra.menu.menus.abstract.menu import Menu
 
 
 class MenuFactory(ABC):

@@ -1,7 +1,4 @@
-from extra.char_analyzer.char_analyzer import CharAnalyzer
 from extra.match.status import Status
-from extra.data_persistence.database_manager import DataBaseManager
-from extra.player.player import Player
 
 
 class Match:
@@ -9,6 +6,7 @@ class Match:
     __slots__ = ["_word", "_chances", "_symbols", "_player", "_hits", "_errors", "_status"]
 
     def __init__(self, word, chances, player):
+        from extra.match.status import Status
         self._word = word  # The word to be discovered.
         self._symbols = list("*" * len(word.word))  # Represent a list of asterisks
         self._chances = chances  # Quantity of errors player may commit.
@@ -45,37 +43,49 @@ class Match:
     def player(self):
         return self._player
 
+    @hits.setter
+    def hits(self, hits: int):
+        assert hits >= 0, f"Hits {hits} must be non-negative"
+        self._hits = hits
+
+    @errors.setter
+    def errors(self, errors: int):
+        assert errors >= 0, f"Errors {errors} must be non-negative"
+        self._errors = errors
+
     def play(self):
-        from extra.view.view import view
+        from extra.view.view import View
+        from extra.char_analyzer.char_analyzer import CharAnalyzer
         self._status.status = Status.in_progress()
-        view = view()
+        view = View()
         ch_an = CharAnalyzer()
-        view.msg("Hangman Game")
-        print("Secret word: ", end="")
-        view.print_list(self._symbols)
-        print("\nErrors:", self._errors)
-        print("Hint:", self._word.hint)
-        view.draw_gallows(self._errors)
         while self._status.status == Status.in_progress():
+            view.msg("Hangman Game")
+            print("Secret word: ", end="")
+            view.print_list(self._symbols)
+            print("\nHits:", self._hits)
+            print("Errors:", self._errors)
+            print("Hint:", self._word.hint)
+            if self._player != "None":
+                print("Player:", self._player.nickname)
+            view.row()
+            view.draw_gallows(self._errors)
+            view.row()
             letter = input("Letter of your choice: ").lower()
             view.clean_prompt()
             analysis_result = ch_an.analyse_char(self, letter)
             view.msg(analysis_result.capitalize())
             view.stop()
             view.clean_prompt()
-            view.msg("Hangman Game")
-            print("Secret word: ", end="")
-            view.print_list(self._symbols)
-            print("\nErrors:", self._errors)
-            print("Hint:", self._word.hint)
-            view.draw_gallows(self._errors)
             if self._status.status == Status.victory():
                 view.msg("Congratulations... You won!")
                 view.stop(2)
             elif self._status.status == Status.defeat():
                 view.msg("Oh bad... Unfortunately, you did not reach that!")
                 view.stop(2)
-            view.clean_prompt()
+        view.clean_prompt()
+        if self._player != "None":
+            self._hand_results()
 
     def update_status(self):
         if self._errors == self._chances:
@@ -85,7 +95,9 @@ class Match:
         else:
             self._status.status = Status.in_progress()
 
-    def hand_results(self):
+    def _hand_results(self):
+        from extra.player.player import Player
+        from extra.data_persistence.database_manager import DatabaseManager
         assert isinstance(self._player, Player), f"Player {self._player} cannot receive results"
         self._player.performance.matches_played += 1
         if self._status.status == Status.victory():  # Player won the match.
@@ -99,4 +111,4 @@ class Match:
                 "match_defeats": self._player.performance.match_defeats,
                 "yield_coefficient": self._player.performance.yield_coefficient
         }
-        DataBaseManager("database").update_record("players", player_data, {"nickname": self._player.nickname})
+        DatabaseManager().update_record("players", player_data, {"nickname": self._player.nickname})

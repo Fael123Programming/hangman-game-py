@@ -61,6 +61,22 @@ class Player:
     def __repr__(self):
         return repr((self._nickname, self._password))
 
+    def get_formatted_info(self) -> str:
+        from extra.view.view import View
+        view = View()
+        print(f"Player nickname: {self._nickname}")
+        view.row()
+        print(f"Matches played: {self.performance.matches_played}")
+        print(f"Match victories: {self.performance.match_victories}")
+        print(f"Match defeats: {self.performance.match_defeats}")
+        view.row()
+        print(f"Challenges played: {self.performance.challenges_played}")
+        print(f"Challenge victories: {self.performance.challenge_victories}")
+        print(f"Challenge defeats: {self.performance.challenge_defeats}")
+        print(f"Challenges made: {self.performance.challenges_made}")
+        view.row()
+        print(f"Yield coefficient: {self.performance.yield_coefficient}")
+
     @classmethod
     def instantiate(cls, player_data: tuple, challenges_list: list):
         from extra.challenge.challenge import Challenge
