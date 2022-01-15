@@ -2,13 +2,15 @@ from extra.match.status import Status
 
 
 class Match:
+    from extra.word.word import Word
+    from extra.player.player import Player
 
     __slots__ = ["_word", "_chances", "_symbols", "_player", "_hits", "_errors", "_status"]
 
-    def __init__(self, word, chances, player):
+    def __init__(self, word: Word, player: Player, chances=5):
         from extra.match.status import Status
         self._word = word  # The word to be discovered.
-        self._symbols = list("*" * len(word.word))  # Represent a list of asterisks
+        self._symbols = self.get_asterisks(word)  # Represent a list of asterisks
         self._chances = chances  # Quantity of errors player may commit.
         self._player = player
         self._hits = 0  # Quantity of hit.
@@ -61,9 +63,8 @@ class Match:
         ch_an = CharAnalyzer()
         while self._status.status == Status.in_progress():
             view.msg("Hangman Game")
-            print("Secret word: ", end="")
-            view.print_list(self._symbols)
-            print("\nHits:", self._hits)
+            print("Secret word:", view.stringify_list(self.symbols))
+            print("Hits:", self._hits)
             print("Errors:", self._errors)
             print("Hint:", self._word.hint)
             if self._player != "None":
@@ -85,7 +86,7 @@ class Match:
                 view.stop(2)
         view.clean_prompt()
         if self._player != "None":
-            self._hand_results()
+            self.hand_results()
 
     def update_status(self):
         if self._errors == self._chances:
@@ -95,7 +96,7 @@ class Match:
         else:
             self._status.status = Status.in_progress()
 
-    def _hand_results(self):
+    def hand_results(self):
         from extra.player.player import Player
         from extra.data_persistence.database_manager import DatabaseManager
         assert isinstance(self._player, Player), f"Player {self._player} cannot receive results"
@@ -112,3 +113,13 @@ class Match:
                 "yield_coefficient": self._player.performance.yield_coefficient
         }
         DatabaseManager().update_record("players", player_data, {"nickname": self._player.nickname})
+
+    @staticmethod
+    def get_asterisks(word: Word) -> list:
+        result = list()
+        for char in word.word:
+            if not char.isspace():
+                result.append("*")
+            else:
+                result.append(char)
+        return result

@@ -5,13 +5,14 @@ from extra.view.view import View
 class MenuPlayerLoggedIn(MainMenu):
 
     def __init__(self):
-        super().__init__("Log out", "Play", "Ranking", "Delete Account", "Exit")
+        super().__init__("Log out", "Play", "Ranking", "Challenges", "Delete account", "Exit")
 
     # Overridden
     def display(self):
         from main import get_player_logged_in
-        from extra.menu.menu_factories.concrete.menu_play_factory import MenuPlayFactory
-        from extra.menu.menu_factories.concrete.menu_ranking_factory import MenuRankingFactory
+        from extra.menu.menu_factories.concrete.other.menu_play_factory import MenuPlayFactory
+        from extra.menu.menu_factories.concrete.other.menu_ranking_factory import MenuRankingFactory
+        from extra.menu.menu_factories.concrete.other.menu_challenge_factory import MenuChallengeFactory
         view = View()
         player_logged_in = get_player_logged_in()
         view.msg("Main Menu")
@@ -20,7 +21,7 @@ class MenuPlayerLoggedIn(MainMenu):
         view.row()
         opt = input(f"What do you want to do, {player_logged_in}? ")
         view.clean_prompt()
-        if opt not in ["1", "2", "3", "4", "5"]:
+        if opt not in ["1", "2", "3", "4", "5", "6"]:
             view.msg("Choose a valid option")
         elif opt == "1":
             logged_out = self._log_out()
@@ -31,6 +32,8 @@ class MenuPlayerLoggedIn(MainMenu):
         elif opt == "3":
             MenuRankingFactory.create_menu().display()
         elif opt == "4":
+            MenuChallengeFactory.create_menu().display()
+        elif opt == "5":
             deleted = self._delete_account(player_logged_in)
             if deleted:
                 return
@@ -80,6 +83,8 @@ class MenuPlayerLoggedIn(MainMenu):
                 view.msg("Deleting all data from database...")
                 view.stop(3)
                 db.delete_record("players", {"nickname": player.nickname})
+                db.delete_record("challenges", {"receiver_nickname": player.nickname})
+                db.delete_record("challenges", {"sender_nickname": player.nickname})
                 set_player_logged_in("None")
                 view.clean_prompt()
                 view.msg("We are sorry for every inconvenience. Thank you for playing our game!")

@@ -6,7 +6,7 @@ class MenuRankingFactory(MenuFactory):
 
     @classmethod
     def create_menu(cls) -> Menu:
-        from extra.menu.menus.concrete.menu_ranking import MenuRanking
+        from extra.menu.menus.concrete.other.menu_ranking import MenuRanking
         if cls.get_menu_obj() is None:
             cls.set_menu_obj(MenuRanking())
         return cls.get_menu_obj()

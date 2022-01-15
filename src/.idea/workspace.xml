@@ -5,34 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a6d8a36-66e7-49e8-977a-140589348e39" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/extra/data_persistence/us_states.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extra/data_persistence/us_states_hints.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_profile_factory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_ranking_factory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_play.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_profile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_ranking.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_challenge_factory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_challenge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/char_analyzer/char_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/char_analyzer/char_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/challenge/challenge.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/challenge/challenge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/data_persistence/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/data_persistence/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/data_persistence/database_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/database_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/match/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/match/match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/menu_account_creation_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_account_creation_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/menu_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/abstract/menu_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/menu_play_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_play_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/menu_player_logged_in_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_player_logged_in_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/menu_player_logged_out_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_player_logged_out_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/abstract/main_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/abstract/menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/menu_account_creation.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_account_creation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/menu_play.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/menu_player_logged_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_player_logged_in.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/menu_player_logged_out.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_player_logged_out.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_account_creation_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_account_creation_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_play_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_play_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_player_logged_in_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/main_menus/menu_player_logged_in_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_player_logged_out_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/main_menus/menu_player_logged_out_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_profile_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_profile_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_ranking_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_ranking_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/abstract/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/abstract/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_account_creation.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_account_creation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_play.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_play.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_player_logged_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/main_menus/menu_player_logged_in.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_player_logged_out.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/main_menus/menu_player_logged_out.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_ranking.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_ranking.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/player/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/player/player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/ranking/ranking.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/ranking/ranking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/word/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/word/word.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/word_provider/word_provider.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/word_provider/word_provider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/view/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/view/view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,14 +74,35 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other" />
+      <recent name="$PROJECT_DIR$/extra/menu/menu_factories/concrete/main_menus" />
+      <recent name="$PROJECT_DIR$/extra/menu/menus/concrete/other" />
+      <recent name="$PROJECT_DIR$/extra/menu/menus/concrete/main_menus" />
       <recent name="$PROJECT_DIR$/extra/menu/menu_factories/concrete" />
-      <recent name="$PROJECT_DIR$/extra/menu/menu_factories/abstract" />
-      <recent name="$PROJECT_DIR$/extra/menu/menus/concrete" />
-      <recent name="$PROJECT_DIR$/extra/menu/menus/abstract" />
-      <recent name="$PROJECT_DIR$/extra/menu/menus" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="char_analyzer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="src" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extra/char_analyzer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extra/char_analyzer/char_analyzer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="config" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="src" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -128,7 +145,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="match" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="src" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -136,11 +153,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extra/menu" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extra/match" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extra/menu/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extra/match/match.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,41 +187,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="two" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="src" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extra/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extra/test/two.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.two" />
       <item itemvalue="Python.test" />
-      <item itemvalue="Python.test (1)" />
       <item itemvalue="Python.config" />
+      <item itemvalue="Python.match" />
+      <item itemvalue="Python.char_analyzer" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
         <item itemvalue="Python.config" />
+        <item itemvalue="Python.char_analyzer" />
+        <item itemvalue="Python.match" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.test (1)" />
-        <item itemvalue="Python.two" />
       </list>
     </recent_temporary>
   </component>

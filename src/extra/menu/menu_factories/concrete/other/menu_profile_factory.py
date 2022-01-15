@@ -6,7 +6,7 @@ class MenuProfileFactory(MenuFactory):
 
     @classmethod
     def create_menu(cls) -> Menu:
-        from extra.menu.menus.concrete.menu_profile import MenuProfile
+        from extra.menu.menus.concrete.other.menu_profile import MenuProfile
         if cls.get_menu_obj() is None:
             cls.set_menu_obj(MenuProfile())
         return cls.get_menu_obj()

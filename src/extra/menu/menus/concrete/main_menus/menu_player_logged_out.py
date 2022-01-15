@@ -4,13 +4,13 @@ from extra.menu.menus.abstract.main_menu import MainMenu
 class MenuPlayerLoggedOut(MainMenu):
 
     def __init__(self):
-        super().__init__("Log in", "Sign Up", "Just Play", "Exit")
+        super().__init__("Log in", "Sign up", "Just play", "Exit")
 
     # Overridden
     def display(self):
         from extra.view.view import View
-        from extra.menu.menu_factories.concrete.menu_play_factory import MenuPlayFactory
-        from extra.menu.menu_factories.concrete.menu_account_creation_factory import MenuAccountCreationFactory
+        from extra.menu.menu_factories.concrete.other.menu_play_factory import MenuPlayFactory
+        from extra.menu.menu_factories.concrete.other.menu_account_creation_factory import MenuAccountCreationFactory
         view = View()
         view.msg("Main Menu", 150)
         for option in range(len(self.options)):

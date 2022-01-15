@@ -4,11 +4,11 @@ from extra.menu.menus.abstract.menu import Menu
 class MenuRanking(Menu):
 
     def __init__(self):
-        super().__init__("Profile", "Global Rank", "Main Menu")
+        super().__init__("Profile", "Global ranking", "Main menu")
 
     def display(self):
         from extra.view.view import View
-        from extra.menu.menu_factories.concrete.menu_profile_factory import MenuProfileFactory
+        from extra.menu.menu_factories.concrete.other.menu_profile_factory import MenuProfileFactory
         view = View()
         while True:
             view.msg("Ranking")

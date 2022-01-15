@@ -61,25 +61,8 @@ class Player:
     def __repr__(self):
         return repr((self._nickname, self._password))
 
-    def get_formatted_info(self) -> str:
-        from extra.view.view import View
-        view = View()
-        print(f"Player nickname: {self._nickname}")
-        view.row()
-        print(f"Matches played: {self.performance.matches_played}")
-        print(f"Match victories: {self.performance.match_victories}")
-        print(f"Match defeats: {self.performance.match_defeats}")
-        view.row()
-        print(f"Challenges played: {self.performance.challenges_played}")
-        print(f"Challenge victories: {self.performance.challenge_victories}")
-        print(f"Challenge defeats: {self.performance.challenge_defeats}")
-        print(f"Challenges made: {self.performance.challenges_made}")
-        view.row()
-        print(f"Yield coefficient: {self.performance.yield_coefficient}")
-
     @classmethod
-    def instantiate(cls, player_data: tuple, challenges_list: list):
-        from extra.challenge.challenge import Challenge
+    def instantiate(cls, player_data: tuple):
         assert len(player_data) == 10, "Invalid player_data"
         player = Player(player_data[0], player_data[1])
         player.performance.matches_played = player_data[2]
@@ -90,7 +73,4 @@ class Player:
         player.performance.challenge_defeats = player_data[7]
         player.performance.challenges_made = player_data[8]
         player.performance.yield_coefficient = player_data[9]
-        for challenge in challenges_list:
-            assert len(challenge) == 4, f"challenge {challenge} is an invalid object"
-            player.challenges.append(Challenge(challenge[0], challenge[1], challenge[2], challenge[3]))
         return player

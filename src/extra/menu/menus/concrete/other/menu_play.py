@@ -4,11 +4,12 @@ from extra.menu.menus.abstract.menu import Menu
 class MenuPlay(Menu):
 
     def __init__(self):
-        super().__init__("Play", "Generate word", "Main Menu")
+        super().__init__("Play", "Generate word", "Main menu")
 
     def display(self):
         from main import get_player_logged_in
         from extra.view.view import View
+        from extra.match.match import Match
         view = View()
         player_logged_in = get_player_logged_in()
         generated_word = None
@@ -21,7 +22,7 @@ class MenuPlay(Menu):
             if generated_word is None:
                 print(f"Generated word: None")
             else:
-                print(f"Generated word: {'*' * len(generated_word.word)}")
+                print(f"Generated word: {view.stringify_list(Match.get_asterisks(generated_word))}")
             print(f"Word Domain: {word_domain}")
             view.row()
             if player_logged_in != "None":
@@ -35,7 +36,7 @@ class MenuPlay(Menu):
             elif opt == "1":
                 self._play(generated_word, player_logged_in)
             elif opt == "2":
-                list_word_domain_generated_word = self._generate_word()
+                list_word_domain_generated_word = self.generate_word()
                 word_domain = list_word_domain_generated_word[0]
                 generated_word = list_word_domain_generated_word[1]
             else:
@@ -43,7 +44,7 @@ class MenuPlay(Menu):
             view.clean_prompt()
 
     @staticmethod
-    def _generate_word() -> list:  # Returns [word_domain, generated_word] if any
+    def generate_word() -> list:  # Returns [word_domain, generated_word] if any
         from extra.view.view import View
         from extra.data_persistence.database_manager import DatabaseManager
         from extra.word_provider.word_provider import WordProvider
@@ -67,8 +68,8 @@ class MenuPlay(Menu):
                 view.msg("Choose a valid domain")
                 view.stop()
             else:
-                view.msg(f"You have chosen {domains[chosen_domain - 1]}", show_upper_line=True, show_lower_line=False)
-                view.msg("Generate a random word from it [y/n]?", show_upper_line=False, show_lower_line=True)
+                view.msg(f"You have chosen {domains[chosen_domain - 1]}", show_lower_line=False)
+                view.msg("Generate a random word from it [y/n]?", show_upper_line=False)
                 resp = input("-> ")[0].lower()
                 view.clean_prompt()
                 if resp == "y":
@@ -92,5 +93,5 @@ class MenuPlay(Menu):
         else:
             if player != "None":
                 player = DatabaseManager().select_player(player)
-            match = Match(word, 5, player)
+            match = Match(word, player)
             match.play()

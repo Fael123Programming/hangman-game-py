@@ -6,7 +6,7 @@ class MenuPlayerLoggedInFactory(MenuFactory):
 
     @classmethod
     def create_menu(cls) -> Menu:
-        from extra.menu.menus.concrete.menu_player_logged_in import MenuPlayerLoggedIn
+        from extra.menu.menus.concrete.main_menus.menu_player_logged_in import MenuPlayerLoggedIn
         if cls.get_menu_obj() is None:
             cls.set_menu_obj(MenuPlayerLoggedIn())
         return cls.get_menu_obj()

@@ -6,10 +6,7 @@ class Ranking(metaclass=SingletonMeta):
 
     @staticmethod
     def get_table():
-        fields = ["nickname", "challenges_played", "challenges_made", "challenge_victories", "challenge_defeats",
-                  "matches_played", "match_victories", "match_defeats", "yield_coefficient"]
-        players = DatabaseManager("database").inspect_table("players", fields, "yield_coefficient", ascending=False,
-                                                            field_conditions=None)
+        players = DatabaseManager().get_players_for_ranking()  # At maximum, 1000 players!
         # players.sort(key=lambda pl: pl.performance.yield_coefficient, reverse=True)
         size = 20
         table = f"{'Nickname':<{size}}{'Challenges Played':<{size}}{'Challenges Made':<{size}}{'Challenge Victories':<{size}}" \

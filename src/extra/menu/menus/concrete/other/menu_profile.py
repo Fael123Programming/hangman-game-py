@@ -6,7 +6,7 @@ class MenuProfile(Menu):
     from extra.player.player import Player
 
     def __init__(self):
-        super().__init__("Info", "Change Nickname", "Change Password", "Ranking")
+        super().__init__("Info", "Change nickname", "Change password", "Ranking")
 
     def display(self):
         from extra.data_persistence.database_manager import DatabaseManager
@@ -65,7 +65,7 @@ class MenuProfile(Menu):
 
     @staticmethod
     def _change_nickname(player: Player):
-        from extra.menu.menus.concrete.menu_account_creation import MenuAccountCreation
+        from extra.menu.menus.concrete.other.menu_account_creation import MenuAccountCreation
         from extra.data_persistence.database_manager import DatabaseManager
         new_nickname = MenuAccountCreation.set_nickname()
         view = View()
@@ -86,7 +86,7 @@ class MenuProfile(Menu):
 
     @staticmethod
     def _change_password(player: Player):
-        from extra.menu.menus.concrete.menu_account_creation import MenuAccountCreation
+        from extra.menu.menus.concrete.other.menu_account_creation import MenuAccountCreation
         from extra.view.view import View
         from extra.data_persistence.database_manager import DatabaseManager
         view = View()

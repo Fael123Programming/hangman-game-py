@@ -13,7 +13,7 @@ class MainMenu(Menu, ABC):
         if input("-> ")[0].lower() == "y":
             from main import del_player_logged_in_file
             view.clean_prompt()
-            view.msg("Good bye!")
+            view.msg("Goodbye!")
             view.stop()
             view.clean_prompt()
             del_player_logged_in_file()

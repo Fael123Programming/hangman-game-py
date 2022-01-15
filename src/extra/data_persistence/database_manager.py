@@ -29,6 +29,13 @@ class DatabaseManager(metaclass=SingletonMeta):
         connection.commit()
         connection.close()
 
+    def delete_table(self, table: str):
+        connection = db.connect(self._database_path)
+        cursor = connection.cursor()
+        cursor.execute(f"DROP TABLE {table}")
+        connection.commit()
+        connection.close()
+
     def insert_data(self, table_name: str, data: str):
         # data must be a string representation of a tuple of values
         # according to the fields of the table.
@@ -38,20 +45,14 @@ class DatabaseManager(metaclass=SingletonMeta):
         connection.commit()
         connection.close()
 
-    def inspect_table(self, table_name: str, fields: str | list, sorting_field: str,
-                      ascending=True, rows=-1, field_conditions=None | dict):
+    def inspect_table(self, table_name: str, fields: str | list, field_conditions: None | dict, sorting_field: str,
+                      ascending=True, rows=-1):
         assert fields == "*" or isinstance(fields, list) and len(fields) > 0, f"Fields argument {fields} is invalid!"
         connection = db.connect(self._database_path)
         cursor = connection.cursor()
         fields_str = fields
         if isinstance(fields, list):
-            fields_str = ""
-            counter = 1
-            for field in fields:
-                fields_str += field
-                if counter < len(fields):
-                    fields_str += ", "
-                counter += 1
+            fields_str = self._stringify(fields)
         sorting_mode = "DESC" if not ascending else "ASC"
         if field_conditions is None:
             cursor.execute(f"SELECT {fields_str} FROM {table_name} ORDER BY {sorting_field} {sorting_mode}")
@@ -64,6 +65,17 @@ class DatabaseManager(metaclass=SingletonMeta):
         table_data = cursor.fetchall() if rows <= 0 else cursor.fetchmany(rows)
         connection.close()
         return table_data
+
+    def get_players_for_ranking(self):
+        connection = db.connect(self._database_path)
+        cursor = connection.cursor()
+        fields = ["nickname", "challenges_played", "challenges_made", "challenge_victories", "challenge_defeats",
+                  "matches_played", "match_victories", "match_defeats", "yield_coefficient"]
+        cursor.execute(f"SELECT {self._stringify(fields)} FROM players ORDER BY yield_coefficient DESC LIMIT 1000")
+        connection.commit()
+        players = cursor.fetchall()
+        connection.close()
+        return players
 
     def update_record(self, table_name: str, field_values: dict, field_conditions: dict):
         field_values_str = self._stringify_comma(field_values)
@@ -91,10 +103,7 @@ class DatabaseManager(metaclass=SingletonMeta):
         player_data = cursor.fetchone()
         if player_data is None:  # No player found with the specified nickname at all
             return player_data
-        cursor.execute(f"SELECT * FROM challenges WHERE receiver_nickname = '{nickname}' ORDER BY word ASC")
-        connection.commit()
-        challenges_list = cursor.fetchall()
-        return Player.instantiate(player_data, challenges_list)
+        return Player.instantiate(player_data)
 
     def domains(self) -> list:
         connection = db.connect(self._database_path)
@@ -115,6 +124,16 @@ class DatabaseManager(metaclass=SingletonMeta):
         words = cursor.fetchall()
         connection.close()
         return words
+
+    def challenges_of_player(self, player_nickname: str) -> list | None:
+        player = self.select_player(player_nickname)
+        if player is None:
+            return player
+        from extra.challenge.challenge import Challenge
+        challenges_list = self.inspect_table("challenges", "*", {"receiver_nickname": player_nickname}, "word")
+        for counter in range(len(challenges_list)):
+            challenges_list[counter] = Challenge.instantiate(challenges_list[counter])
+        return challenges_list
 
     @property
     def database_name(self):
@@ -152,4 +171,13 @@ class DatabaseManager(metaclass=SingletonMeta):
             if counter < len(a_dict):
                 result += f" AND "
             counter += 1
+        return result
+
+    @staticmethod
+    def _stringify(a_list: list):
+        result = ""
+        for counter in range(len(a_list)):
+            result += str(a_list[counter])
+            if counter < len(a_list) - 1:
+                result += ", "
         return result

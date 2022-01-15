@@ -5,9 +5,11 @@ import os
 class View(metaclass=SingletonMeta):
 
     @staticmethod
-    def print_list(a_list: list):
+    def stringify_list(a_list: list) -> str:
+        string = ""
         for item in a_list:
-            print(item, end="")
+            string += str(item)
+        return string
 
     @staticmethod
     def msg(text: str, dashes=150, show_upper_line=True, show_lower_line=True):

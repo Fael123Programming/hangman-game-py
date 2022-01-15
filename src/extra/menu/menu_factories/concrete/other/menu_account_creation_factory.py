@@ -6,7 +6,7 @@ class MenuAccountCreationFactory(MenuFactory):
 
     @classmethod
     def create_menu(cls) -> Menu:
-        from extra.menu.menus.concrete.menu_account_creation import MenuAccountCreation
+        from extra.menu.menus.concrete.other.menu_account_creation import MenuAccountCreation
         if cls.get_menu_obj() is None:
             cls.set_menu_obj(MenuAccountCreation())
         return cls.get_menu_obj()
