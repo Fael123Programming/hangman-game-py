@@ -56,7 +56,7 @@ if __name__ == "__main__":
     from extra.view.view import View
     create_file_player_logged_in(player_logged_in_file)
     set_player_logged_in("None")
-    # View().load("Welcome to Hangman Game", 150)
+    View().load("Welcome to Hangman Game", 150)
     while True:
         menu = get_proper_menu()
         # If there is no user logged in or there is a user logged in, then returns a menu for either case.

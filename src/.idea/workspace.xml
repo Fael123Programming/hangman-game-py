@@ -5,31 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a6d8a36-66e7-49e8-977a-140589348e39" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_challenge_factory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_challenge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/challenge/challenge.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/challenge/challenge.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/data_persistence/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/data_persistence/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/data_persistence/database_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/database_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/match/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/match/match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_account_creation_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_account_creation_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_play_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_play_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_player_logged_in_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/main_menus/menu_player_logged_in_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_player_logged_out_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/main_menus/menu_player_logged_out_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_profile_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_profile_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/menu_ranking_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menu_factories/concrete/other/menu_ranking_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/abstract/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/abstract/menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_account_creation.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_account_creation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_play.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_play.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_player_logged_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/main_menus/menu_player_logged_in.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_player_logged_out.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/main_menus/menu_player_logged_out.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_profile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/menu_ranking.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_ranking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/player/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/player/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/ranking/ranking.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/ranking/ranking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/view/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/view/view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,11 +164,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.main" />
-      <item itemvalue="Python.test" />
-      <item itemvalue="Python.config" />
-      <item itemvalue="Python.match" />
       <item itemvalue="Python.char_analyzer" />
+      <item itemvalue="Python.config" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.match" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
