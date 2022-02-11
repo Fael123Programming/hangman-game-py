@@ -43,8 +43,8 @@ class Challenge(Match):
             self.player.performance.challenge_defeats += 1
             sender_data["challenge_victories"] = self._sender.performance.challenge_victories
             player_data["challenge_defeats"] = self.player.performance.challenge_defeats
-        self._sender.performance.calculate_new_yield_coe()
-        self.player.performance.calculate_new_yield_coe()
+        self._sender.performance.calculate_new_yield_coefficient()
+        self.player.performance.calculate_new_yield_coefficient()
         sender_data["yield_coefficient"] = self._sender.performance.yield_coefficient
         player_data["yield_coefficient"] = self.player.performance.yield_coefficient
         db = DatabaseManager()
@@ -64,16 +64,16 @@ class Challenge(Match):
         return data.__str__()
 
     @classmethod
-    def instantiate(cls, data: tuple):
-        assert len(data) == 5, "Data is invalid"
+    def instantiate(cls, challenge_data: tuple):
+        assert len(challenge_data) == 5, "Data is invalid"
         from extra.data_persistence.database_manager import DatabaseManager
         from extra.word.word import Word
         db = DatabaseManager()
-        receiver_player = db.select_player(data[2])
-        sender_player = db.select_player(data[3])
-        word_tuple = db.inspect_table("words", "*", {"word": data[0]}, "word")[0]
+        receiver_player = db.select_player(challenge_data[2])
+        sender_player = db.select_player(challenge_data[3])
+        word_tuple = db.inspect_table("words", "*", {"word": challenge_data[0]}, "word")[0]
         assert len(word_tuple) == 3, "Word tuple is invalid"
         word = Word(word_tuple[0], word_tuple[1], word_tuple[2])
-        return cls(word, receiver_player, sender_player, data[1], data[4])
+        return cls(word, receiver_player, sender_player, challenge_data[1], challenge_data[4])
 
 

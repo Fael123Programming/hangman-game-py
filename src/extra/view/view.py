@@ -54,7 +54,7 @@ class View(metaclass=SingletonMeta):
         os.system("cls" if os.name in ("nt", "dos") else "clear")
 
     @staticmethod
-    def draw_gallows(quantity_of_errors):
+    def draw_gallows(quantity_of_errors: int):
         if quantity_of_errors == 0:
             print("\u2796\u2796\u2796\u2796\u2796\u2796")  # Unicode character minus.
             print("|           |")

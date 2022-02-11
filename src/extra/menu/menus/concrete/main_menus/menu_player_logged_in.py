@@ -58,7 +58,7 @@ class MenuPlayerLoggedIn(MainMenu):
         return False
 
     @staticmethod
-    def _delete_account(player_nickname: str):
+    def _delete_account(player_nickname: str) -> bool:
         from extra.data_persistence.database_manager import DatabaseManager
         db = DatabaseManager()
         player = db.select_player(player_nickname)

@@ -16,7 +16,7 @@ class WordProvider(metaclass=SingletonMeta):
     def random_word(self, domain=None):
         from random import randint
         from extra.word.word import Word
-        domains = self._database_manager.domains()
+        domains = self._database_manager.word_domains()
         if domain is None:
             domain = domains[randint(0, len(domains) - 1)]  # Random domain!
         else:

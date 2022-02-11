@@ -1,5 +1,5 @@
 # Menus: player logged in, player logged out, account creation menu, play menu, profile, ranking menu
-# Use Abstract Factory pattern.
+# Use of Factory Method pattern.
 from abc import ABC, abstractmethod
 
 

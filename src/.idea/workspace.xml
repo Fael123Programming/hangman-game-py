@@ -6,6 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="0a6d8a36-66e7-49e8-977a-140589348e39" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/challenge/challenge.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/challenge/challenge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/data_persistence/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/data_persistence/database_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/data_persistence/database_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/match/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/match/match.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/abstract/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/abstract/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/abstract/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/abstract/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/main_menus/menu_player_logged_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/main_menus/menu_player_logged_in.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/main_menus/menu_player_logged_out.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/main_menus/menu_player_logged_out.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_account_creation.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_account_creation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_play.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/menu/menus/concrete/other/menu_play.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/player/performance.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/player/performance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/view/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/view/view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/word/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/word/word.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/word_provider/word_provider.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra/word_provider/word_provider.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,11 +178,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.char_analyzer" />
-      <item itemvalue="Python.config" />
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.match" />
       <item itemvalue="Python.test" />
+      <item itemvalue="Python.config" />
+      <item itemvalue="Python.match" />
+      <item itemvalue="Python.char_analyzer" />
     </list>
     <recent_temporary>
       <list>

@@ -29,10 +29,10 @@ class DatabaseManager(metaclass=SingletonMeta):
         connection.commit()
         connection.close()
 
-    def delete_table(self, table: str):
+    def delete_table(self, table_name: str):
         connection = db.connect(self._database_path)
         cursor = connection.cursor()
-        cursor.execute(f"DROP TABLE {table}")
+        cursor.execute(f"DROP TABLE {table_name}")
         connection.commit()
         connection.close()
 
@@ -94,7 +94,7 @@ class DatabaseManager(metaclass=SingletonMeta):
         connection.commit()
         connection.close()
 
-    def select_player(self, nickname: str):
+    def select_player(self, nickname: str) -> Player | None:
         assert not nickname.isspace() and len(nickname) > 0, "Invalid nickname"
         connection = db.connect(self._database_path)
         cursor = connection.cursor()
@@ -105,7 +105,7 @@ class DatabaseManager(metaclass=SingletonMeta):
             return player_data
         return Player.instantiate(player_data)
 
-    def domains(self) -> list:
+    def word_domains(self) -> list:
         connection = db.connect(self._database_path)
         cursor = connection.cursor()
         cursor.execute("SELECT domain_name FROM domains ORDER BY domain_name ASC")
@@ -115,8 +115,8 @@ class DatabaseManager(metaclass=SingletonMeta):
             domains.append(domain_tuple[0])
         return domains
 
-    def words_from_domain(self, domain: str):
-        assert domain in self.domains(), f"Domain {domain} does not exist"
+    def words_from_domain(self, domain: str) -> list:
+        assert domain in self.word_domains(), f"Domain {domain} does not exist"
         connection = db.connect(self._database_path)
         cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM words WHERE domain = '{domain}' ORDER BY word")

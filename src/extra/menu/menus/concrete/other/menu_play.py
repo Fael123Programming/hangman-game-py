@@ -51,7 +51,7 @@ class MenuPlay(Menu):
         view = View()
         db = DatabaseManager()
         view.msg("Choose a domain")
-        domains = db.domains()
+        domains = db.word_domains()
         word_domain, generated_word = None, None
         for domain in range(len(domains)):
             print(f"[{domain + 1}] - {domains[domain]}")

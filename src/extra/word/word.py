@@ -1,13 +1,10 @@
-from extra.word_provider.word_provider import WordProvider
-
-
 class Word:
 
     __slots__ = ["_word", "_hint", "_domain"]
 
     def __init__(self, word: str, hint: str, domain: str):
         from extra.data_persistence.database_manager import DatabaseManager
-        assert domain in DatabaseManager().domains(), f"Domain {domain} does not exist"
+        assert domain in DatabaseManager().word_domains(), f"Domain {domain} does not exist"
         self._word = word
         self._hint = hint
         self._domain = domain

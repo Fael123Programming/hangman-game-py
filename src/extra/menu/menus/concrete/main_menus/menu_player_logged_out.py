@@ -34,7 +34,7 @@ class MenuPlayerLoggedOut(MainMenu):
         view.clean_prompt()
 
     @staticmethod
-    def _log_in():
+    def _log_in() -> bool:
         from extra.view.view import View
         from extra.data_persistence.database_manager import DatabaseManager
         view = View()

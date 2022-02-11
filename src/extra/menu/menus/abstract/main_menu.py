@@ -1,5 +1,5 @@
-from extra.menu.menus.abstract.menu import Menu
 from abc import ABC
+from extra.menu.menus.abstract.menu import Menu
 
 
 class MainMenu(Menu, ABC):

@@ -73,6 +73,6 @@ class Performance:
         assert yield_coefficient >= 0, f"Yield coefficient {yield_coefficient} must be non-negative"
         self._yield_coefficient = yield_coefficient
 
-    def calculate_new_yield_coe(self):
+    def calculate_new_yield_coefficient(self):
         self._yield_coefficient = (self._match_victories + self._challenge_victories) / \
                                   (self._matches_played + self._challenges_played + self._challenges_made)

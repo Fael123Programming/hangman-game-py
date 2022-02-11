@@ -57,7 +57,7 @@ class MenuAccountCreation(Menu):
             view.stop()
 
     @staticmethod
-    def set_nickname():
+    def set_nickname() -> str | None:
         from extra.data_persistence.database_manager import DatabaseManager
         view = View()
         view.msg("Set Nickname")
@@ -79,7 +79,7 @@ class MenuAccountCreation(Menu):
                 return nickname
 
     @staticmethod
-    def set_password():
+    def set_password() -> str | None:
         from extra.view.view import View
         view = View()
         view.msg("Set Password")
@@ -92,7 +92,7 @@ class MenuAccountCreation(Menu):
         return password
 
     @staticmethod
-    def _create_account(nickname: str, password: str):
+    def _create_account(nickname: str, password: str) -> bool:
         from extra.view.view import View
         from extra.data_persistence.database_manager import DatabaseManager
         view = View()

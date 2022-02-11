@@ -105,7 +105,7 @@ class Match:
             self._player.performance.match_victories += 1
         else:
             self._player.performance.match_defeats += 1
-        self._player.performance.calculate_new_yield_coe()
+        self._player.performance.calculate_new_yield_coefficient()
         player_data = {
                 "matches_played": self._player.performance.matches_played,
                 "match_victories": self._player.performance.match_victories,
